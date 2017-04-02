@@ -1,3 +1,21 @@
+<?php
+    
+    require_once 'config.php';
+    require_once DBAPI;
+    
+    if(isset($_POST['submit'])) {
+
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $fone = $_POST['fone'];
+
+        insert($nome, $email, $fone);
+
+            
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,7 +125,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-lg-12 text-center">
                                         <div id="success"></div>
-                                        <input type="submit" class="btn btn-primary"></button>
+                                        <button  type="submit" class="btn btn-primary">ENVIAR</button >
                                         <br>
                                         <br>
                                     </div>
@@ -120,38 +138,4 @@
 
     </html>
 
-    <?php
 
-     $databaseHost = 'localhost';
-     $databaseName = 'cadastros';
-     $databaseUsername = 'root';
-     $databasePassword = '';
-
-    $mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName);
-    
-        if(isset($_POST['submit'])) {
-
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $fone = $_POST['fone'];
-
-            echo $nome;
-            echo $email;
-
-            $sql = "INSERT INTO usuarios (nome, email, fone) VALUES ('".$nome."', '".$email."', '".$fone."')";
-    
-                if(mysqli_query($mysqli,$sql)){
-
-                    echo "<script type='javascript'>alert('Cadastro realizado com sucesso!!');";
-                    echo "javascript:window.location='index.php';</script>";
-
-                } else {
-
-                    echo "<script type='javascript'>alert('Opa, ocorreu um erro! Tenta novamente! :/');";
-                    echo "javascript:window.location='index.php';</script>";
-
-                }
-
-        }
-
-    ?>
